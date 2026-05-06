@@ -555,3 +555,16 @@ button {
   gap: 0.5rem;
   margin-top: 1rem;
 }
+
+@keyframes bounce-x {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+}
+
+.bounce-arrow {
+  animation: bounce-x 1s infinite ease-in-out;
+}

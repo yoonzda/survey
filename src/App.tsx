@@ -138,13 +138,13 @@ function App() {
             <h1 className="title">내면의 성향을<br/>발견하는 시간</h1>
             <div className="divider"></div>
             <p className="description">
-              10개의 심도 있는 질문을 통해<br/>
-              당신의 고유한 성격 유형을 분석합니다.
+              당신의 내면을 꿰뚫는 심도 있는 질문들을 통해<br/>
+              고유한 성격 유형을 분석합니다.
             </p>
           </div>
           <button className="btn-primary" onClick={handleStart}>
             <span>검사 시작하기</span>
-            <ArrowRight size={18} strokeWidth={1.5} />
+            <ArrowRight size={18} strokeWidth={1.5} className="bounce-arrow" />
           </button>
         </div>
       )}
