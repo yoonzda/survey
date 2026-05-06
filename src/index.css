@@ -574,3 +574,22 @@ button {
 .bounce-arrow {
   animation: bounce-x 2.5s infinite ease-in-out;
 }
+
+.bg-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-watermark svg {
+  width: 280px;
+  height: 280px;
+  color: var(--text-main);
+}
