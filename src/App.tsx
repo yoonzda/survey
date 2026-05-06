@@ -66,6 +66,7 @@ function App() {
       {step === 'intro' && (
         <div className="screen intro-screen animate-fade-in">
           <div className="intro-content">
+            <img src={`${import.meta.env.BASE_URL}favicon.png`} alt="Survey Logo" className="intro-logo" />
             <h3 className="subtitle">PERSONALITY TEST</h3>
             <h1 className="title">내면의 성향을<br/>발견하는 시간</h1>
             <div className="divider"></div>
