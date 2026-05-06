@@ -301,7 +301,6 @@ button {
   height: 100%;
   object-fit: cover;
   transition: transform 0.2s ease;
-  mix-blend-mode: multiply;
 }
 
 .option-text {
