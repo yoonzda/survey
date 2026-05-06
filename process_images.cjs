@@ -6,7 +6,7 @@ const src = "C:\\Users\\누리아이 개발팀\\.gemini\\antigravity\\brain\\d31
 const dest = "c:\\0_z\\survey\\public\\images";
 
 async function processImages() {
-  const files = fs.readdirSync(src).filter(f => f.match(/^q\d+_[ab]_blob_fixed_/));
+  const files = fs.readdirSync(src).filter(f => f.match(/^q1_[ab]_round_/));
   
   for (const f of files) {
     const parts = f.split('_');
