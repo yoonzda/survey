@@ -144,7 +144,7 @@ function App() {
           </div>
           <button className="btn-primary" onClick={handleStart}>
             <span>검사 시작하기</span>
-            <ChevronRight size={22} strokeWidth={1.5} className="bounce-arrow" />
+            <ChevronRight size={22} strokeWidth={2.5} className="bounce-arrow" />
           </button>
         </div>
       )}

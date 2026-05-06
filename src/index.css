@@ -560,20 +560,17 @@ button {
   0%, 50% {
     transform: translateX(0);
   }
-  60% {
-    transform: translateX(-4px);
+  65% {
+    transform: translateX(-3px);
   }
-  75% {
-    transform: translateX(6px);
+  80% {
+    transform: translateX(5px);
   }
-  85% {
-    transform: translateX(-1px);
-  }
-  95%, 100% {
+  90%, 100% {
     transform: translateX(0);
   }
 }
 
 .bounce-arrow {
-  animation: bounce-x 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
+  animation: bounce-x 2s infinite ease-in-out;
 }
