@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#18181b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-  <polygon points="50,15 85,50 50,85 15,50" />
-  <polygon points="50,30 70,50 50,70 30,50" />
-  <line x1="50" y1="15" x2="50" y2="85" />
-  <line x1="15" y1="50" x2="85" y2="50" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#18181b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10"/>
+  <path d="M17 12c0-2.761-2.239-5-5-5s-5 2.239-5 5"/>
+  <path d="M12 12c-1.38 0-2.5 1.12-2.5 2.5S10.62 17 12 17s2.5-1.12 2.5-2.5"/>
+  <path d="M12 22v-5"/>
+  <path d="M20 16.5c-1.5 2-4 3.5-7 3.5-4.418 0-8-3.582-8-8"/>
 </svg>

@@ -126,6 +126,8 @@ function App() {
     );
   };
 
+  const currentResult = step === 'result' ? results[getResultType()] : null;
+
   return (
     <div className="app-container">
       {step === 'intro' && (
@@ -188,17 +190,16 @@ function App() {
         </div>
       )}
 
-      {step === 'result' && (
+      {step === 'result' && currentResult && (
         <div className="screen result-screen animate-push-left">
           <div ref={resultRef} className="result-capture-area">
             <div className="result-header">
               <span className="result-label">ANALYSIS COMPLETE</span>
-              <h1 className="result-type accent-text">{getResultType()}</h1>
-              <h2 className="result-title">{results[getResultType()].title}</h2>
+              <h1 className="result-type accent-text">{currentResult.type}</h1>
+              <h2 className="result-title">{currentResult.title}</h2>
             </div>
             
             <div className="result-body">
-              {/* 그래프 (Traits Summary) */}
               <div className="traits-container">
                 {renderTraitBar('E', 'I', scores.E, scores.I)}
                 {renderTraitBar('S', 'N', scores.S, scores.N)}
@@ -206,11 +207,12 @@ function App() {
                 {renderTraitBar('J', 'P', scores.J, scores.P)}
               </div>
 
-              {/* 상세 설명 (각 글자별 강조) */}
               <div className="result-desc">
-                <p className="desc-main">{results[getResultType()].description}</p>
+                <p className="desc-main">{currentResult.description}</p>
+                
+                {/* 각 성향별 딥다이브 */}
                 <div className="trait-breakdown">
-                  {getResultType().split('').map(char => {
+                  {currentResult.type.split('').map(char => {
                     const trait = traitExplanations[char];
                     return (
                       <div key={char} className="trait-breakdown-item">
@@ -223,6 +225,21 @@ function App() {
                     );
                   })}
                 </div>
+
+                {/* 환상의 궁합 / 파국의 궁합 */}
+                <div className="match-container">
+                  <div className="match-card good-match">
+                    <div className="match-badge">최고의 궁합 🤝</div>
+                    <div className="match-type">{currentResult.goodMatch.type} - {currentResult.goodMatch.title}</div>
+                    <p className="match-desc">{currentResult.goodMatch.desc}</p>
+                  </div>
+                  <div className="match-card bad-match">
+                    <div className="match-badge">상극인 궁합 🌪️</div>
+                    <div className="match-type">{currentResult.badMatch.type} - {currentResult.badMatch.title}</div>
+                    <p className="match-desc">{currentResult.badMatch.desc}</p>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
