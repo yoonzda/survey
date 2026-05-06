@@ -11,43 +11,43 @@ export type Question = {
 
 export const questions: Question[] = [
   {
-    id: 1, text: "주말이 다가옵니다. 당신의 계획은?", type: "EI", icon: "Coffee",
+    id: 1, text: "주말이 다가옵니다. 당신의 계획은?", type: "EI", icon: "q1",
     options: [{ text: "친구들과 핫플에서 신나게 놀기!", value: "E" }, { text: "집에서 넷플릭스 보며 힐링하기", value: "I" }]
   },
   {
-    id: 2, text: "처음 가는 모임에 참석했을 때 당신은?", type: "EI", icon: "Users",
+    id: 2, text: "처음 가는 모임에 참석했을 때 당신은?", type: "EI", icon: "q2",
     options: [{ text: "먼저 다가가서 인사를 건네며 분위기를 주도한다.", value: "E" }, { text: "누군가 말을 걸어줄 때까지 조용히 상황을 지켜본다.", value: "I" }]
   },
   {
-    id: 3, text: "여행을 갈 때 당신의 스타일은?", type: "JP", icon: "Plane",
+    id: 3, text: "여행을 갈 때 당신의 스타일은?", type: "JP", icon: "q3",
     options: [{ text: "시간 단위로 철저하게 계획을 세운다.", value: "J" }, { text: "발길 닿는 대로, 즉흥적인 여행이 최고!", value: "P" }]
   },
   {
-    id: 4, text: "친구가 '나 우울해서 화분 샀어'라고 말할 때 당신의 반응은?", type: "TF", icon: "Flower2",
+    id: 4, text: "친구가 '나 우울해서 화분 샀어'라고 말할 때 당신의 반응은?", type: "TF", icon: "q4",
     options: [{ text: "무슨 일 있어? 왜 우울해? (걱정)", value: "F" }, { text: "무슨 화분 샀어? (호기심)", value: "T" }]
   },
   {
-    id: 5, text: "업무나 과제를 처리할 때 당신은?", type: "JP", icon: "Calendar",
+    id: 5, text: "업무나 과제를 처리할 때 당신은?", type: "JP", icon: "q5",
     options: [{ text: "마감일 전에 미리미리 끝내놓아야 마음이 편하다.", value: "J" }, { text: "마감일이 다가와야 엄청난 집중력이 발휘된다.", value: "P" }]
   },
   {
-    id: 6, text: "요리를 할 때 당신은?", type: "SN", icon: "ChefHat",
+    id: 6, text: "요리를 할 때 당신은?", type: "SN", icon: "q6",
     options: [{ text: "레시피에 적힌 정량 그대로 계량해서 넣는다.", value: "S" }, { text: "눈대중으로 대충 감을 믿고 요리한다.", value: "N" }]
   },
   {
-    id: 7, text: "고민을 상담하는 친구에게 당신은?", type: "TF", icon: "HeartHandshake",
+    id: 7, text: "고민을 상담하는 친구에게 당신은?", type: "TF", icon: "q7",
     options: [{ text: "해결책을 제시하고 현실적인 조언을 해준다.", value: "T" }, { text: "일단 공감해주고 친구의 편을 들어준다.", value: "F" }]
   },
   {
-    id: 8, text: "영화를 볼 때 당신은?", type: "SN", icon: "Film",
+    id: 8, text: "영화를 볼 때 당신은?", type: "SN", icon: "q8",
     options: [{ text: "스토리의 전개와 배우의 연기, 시각적 요소에 집중한다.", value: "S" }, { text: "영화에 담긴 숨은 의미나 상징, 감독의 의도를 파악하려 한다.", value: "N" }]
   },
   {
-    id: 9, text: "팀 프로젝트에서 갈등이 생겼을 때 당신은?", type: "TF", icon: "Handshake",
+    id: 9, text: "팀 프로젝트에서 갈등이 생겼을 때 당신은?", type: "TF", icon: "q9",
     options: [{ text: "누가 잘못했는지 논리적으로 따져서 문제를 해결한다.", value: "T" }, { text: "서로의 감정이 상하지 않도록 중재하고 타협점을 찾는다.", value: "F" }]
   },
   {
-    id: 10, text: "새로운 물건을 조립할 때 당신은?", type: "SN", icon: "Puzzle",
+    id: 10, text: "새로운 물건을 조립할 때 당신은?", type: "SN", icon: "q10",
     options: [{ text: "설명서를 꼼꼼하게 처음부터 끝까지 읽어본다.", value: "S" }, { text: "일단 부품을 맞춰보며 감으로 조립한다.", value: "N" }]
   }
 ];

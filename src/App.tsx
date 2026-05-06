@@ -1,14 +1,7 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { questions, results, traitExplanations } from './data';
-import { 
-  ChevronRight, ChevronLeft, Share, Download, RotateCcw,
-  Coffee, Users, Plane, Flower2, Calendar, ChefHat, HeartHandshake, Film, Handshake, Puzzle
-} from 'lucide-react';
+import { ChevronRight, ChevronLeft, Share, Download, RotateCcw } from 'lucide-react';
 import html2canvas from 'html2canvas';
-
-const IconMap: Record<string, React.ElementType> = {
-  Coffee, Users, Plane, Flower2, Calendar, ChefHat, HeartHandshake, Film, Handshake, Puzzle
-};
 
 type Step = 'intro' | 'survey' | 'loading' | 'result';
 
@@ -158,9 +151,9 @@ function App() {
 
       {step === 'survey' && (
         <div className="screen survey-screen animate-push-left">
-          {IconMap[questions[currentQIndex].icon] && (
+          {questions[currentQIndex].icon && (
             <div className="bg-watermark">
-              {React.createElement(IconMap[questions[currentQIndex].icon], { strokeWidth: 1 })}
+              <img src={`${import.meta.env.BASE_URL}images/${questions[currentQIndex].icon}.png`} alt="watermark" />
             </div>
           )}
           <div className="survey-header">

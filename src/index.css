@@ -608,15 +608,16 @@ button {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 0;
-  opacity: 0.03;
+  opacity: 0.08;
   pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.bg-watermark svg {
+.bg-watermark img {
   width: 280px;
   height: 280px;
-  color: var(--text-main);
+  object-fit: contain;
+  mix-blend-mode: multiply;
 }
