@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { questions, results } from './data';
-import { ChevronRight, RotateCcw, Share2 } from 'lucide-react';
+import { ArrowRight, RotateCcw, Share } from 'lucide-react';
 
 type Step = 'intro' | 'survey' | 'loading' | 'result';
 
@@ -28,7 +28,7 @@ function App() {
       setStep('loading');
       setTimeout(() => {
         setStep('result');
-      }, 1500);
+      }, 2000); // slightly longer, calmer loading
     }
   };
 
@@ -49,7 +49,7 @@ function App() {
       try {
         await navigator.share({
           title: '성격 유형 테스트',
-          text: `나의 성격 유형은 [${resultType} - ${resultTitle}]! 당신의 성격도 알아보세요.`,
+          text: `나의 성격 유형은 [${resultType} - ${resultTitle}] 입니다.`,
           url: url,
         });
       } catch (err) {
@@ -57,137 +57,124 @@ function App() {
       }
     } else {
       navigator.clipboard.writeText(url);
-      alert('결과 링크가 클립보드에 복사되었습니다!');
+      alert('결과 링크가 복사되었습니다.');
     }
   };
 
   return (
     <div className="app-container">
-      <div className="card">
-        {step === 'intro' && (
-          <div className="intro-section animate-fade-in">
-            <div className="intro-content">
-              <h1>당신의 진짜 성격은?</h1>
-              <p>10개의 질문으로 알아보는 나의 성격 유형</p>
-              <div className="illustration-placeholder">
-                <div className="circle gradient-1"></div>
-                <div className="circle gradient-2"></div>
-                <div className="circle gradient-3"></div>
-              </div>
-            </div>
-            <button className="primary-btn" onClick={handleStart}>
-              테스트 시작하기 <ChevronRight size={20} />
-            </button>
+      {step === 'intro' && (
+        <div className="screen intro-screen animate-fade-in">
+          <div className="intro-content">
+            <h3 className="subtitle">PERSONALITY TEST</h3>
+            <h1 className="title">내면의 성향을<br/>발견하는 시간</h1>
+            <div className="divider"></div>
+            <p className="description">
+              10개의 심도 있는 질문을 통해<br/>
+              당신의 고유한 성격 유형을 분석합니다.
+            </p>
           </div>
-        )}
+          <button className="btn-primary" onClick={handleStart}>
+            <span>검사 시작하기</span>
+            <ArrowRight size={18} strokeWidth={1.5} />
+          </button>
+        </div>
+      )}
 
-        {step === 'survey' && (
-          <div className="survey-section animate-fade-in">
-            <div className="survey-header">
-              <div className="progress-bar">
-                <div 
-                  className="progress-fill" 
-                  style={{ width: `${((currentQIndex + 1) / questions.length) * 100}%` }}
-                ></div>
-              </div>
-              <div className="question-counter">
-                <span className="current">{currentQIndex + 1}</span>
-                <span className="total">/ {questions.length}</span>
-              </div>
+      {step === 'survey' && (
+        <div className="screen survey-screen animate-fade-in">
+          <div className="survey-header">
+            <div className="progress-text">
+              {String(currentQIndex + 1).padStart(2, '0')} / {questions.length}
             </div>
-            <div className="question-content">
-              <h2 className="question-text">{questions[currentQIndex].text}</h2>
-            </div>
-            <div className="options">
-              {questions[currentQIndex].options.map((opt, idx) => (
-                <button 
-                  key={idx} 
-                  className="option-btn" 
-                  onClick={() => handleAnswer(opt.value)}
-                >
-                  {opt.text}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {step === 'loading' && (
-          <div className="loading-section animate-fade-in">
-            <div className="spinner-wrapper">
-              <div className="spinner"></div>
-              <div className="spinner-inner"></div>
-            </div>
-            <p className="loading-text">당신의 성격 유형을<br/>정밀하게 분석하고 있습니다...</p>
-          </div>
-        )}
-
-        {step === 'result' && (
-          <div className="result-section animate-slide-up">
-            <div className="result-header">
-              <h3>분석 완료! 당신의 성격 유형은</h3>
+            <div className="progress-bar">
               <div 
-                className="result-type-badge"
-                style={{ 
-                  background: `linear-gradient(135deg, ${results[getResultType()].color}, ${results[getResultType()].color}dd)`,
-                  boxShadow: `0 10px 25px ${results[getResultType()].color}66`
-                }}
+                className="progress-fill" 
+                style={{ width: `${((currentQIndex + 1) / questions.length) * 100}%` }}
+              ></div>
+            </div>
+          </div>
+          <div className="question-content">
+            <h2 className="question-text">{questions[currentQIndex].text}</h2>
+          </div>
+          <div className="options">
+            {questions[currentQIndex].options.map((opt, idx) => (
+              <button 
+                key={idx} 
+                className="btn-option" 
+                onClick={() => handleAnswer(opt.value)}
               >
-                {getResultType()}
-              </div>
-              <h2 className="result-title">{results[getResultType()].title}</h2>
+                {opt.text}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {step === 'loading' && (
+        <div className="screen loading-screen animate-fade-in">
+          <div className="loader"></div>
+          <p className="loading-text">답변을 바탕으로<br/>심층 분석을 진행 중입니다</p>
+        </div>
+      )}
+
+      {step === 'result' && (
+        <div className="screen result-screen animate-fade-in">
+          <div className="result-header">
+            <span className="result-label">ANALYSIS COMPLETE</span>
+            <h1 className="result-type">{getResultType()}</h1>
+            <h2 className="result-title">{results[getResultType()].title}</h2>
+          </div>
+          
+          <div className="result-body">
+            <div className="result-desc">
+              <p>{results[getResultType()].description}</p>
             </div>
             
-            <div className="result-content">
-              <div className="result-desc-box">
-                <div className="quote-icon left">"</div>
-                <p>{results[getResultType()].description}</p>
-                <div className="quote-icon right">"</div>
+            <div className="traits-container">
+              <div className="trait-row">
+                <span className={`trait-label ${answers.E >= answers.I ? 'active' : ''}`}>E</span>
+                <div className="trait-bar-bg">
+                  <div className="trait-bar-fill" style={{ width: `${(answers.E / (answers.E + answers.I || 1)) * 100}%` }}></div>
+                </div>
+                <span className={`trait-label ${answers.I > answers.E ? 'active' : ''}`}>I</span>
               </div>
-              
-              <div className="traits-summary">
-                <div className="trait-row">
-                  <span className={answers.E >= answers.I ? 'active' : ''}>E (외향)</span>
-                  <div className="trait-bar">
-                    <div className="trait-fill" style={{ width: `${(answers.E / (answers.E + answers.I || 1)) * 100}%`, background: answers.E >= answers.I ? '#6366f1' : '#cbd5e1' }}></div>
-                  </div>
-                  <span className={answers.I > answers.E ? 'active' : ''}>I (내향)</span>
+              <div className="trait-row">
+                <span className={`trait-label ${answers.S >= answers.N ? 'active' : ''}`}>S</span>
+                <div className="trait-bar-bg">
+                  <div className="trait-bar-fill" style={{ width: `${(answers.S / (answers.S + answers.N || 1)) * 100}%` }}></div>
                 </div>
-                <div className="trait-row">
-                  <span className={answers.S >= answers.N ? 'active' : ''}>S (감각)</span>
-                  <div className="trait-bar">
-                    <div className="trait-fill" style={{ width: `${(answers.S / (answers.S + answers.N || 1)) * 100}%`, background: answers.S >= answers.N ? '#a855f7' : '#cbd5e1' }}></div>
-                  </div>
-                  <span className={answers.N > answers.S ? 'active' : ''}>N (직관)</span>
-                </div>
-                <div className="trait-row">
-                  <span className={answers.T >= answers.F ? 'active' : ''}>T (사고)</span>
-                  <div className="trait-bar">
-                    <div className="trait-fill" style={{ width: `${(answers.T / (answers.T + answers.F || 1)) * 100}%`, background: answers.T >= answers.F ? '#3b82f6' : '#cbd5e1' }}></div>
-                  </div>
-                  <span className={answers.F > answers.T ? 'active' : ''}>F (감정)</span>
-                </div>
-                <div className="trait-row">
-                  <span className={answers.J >= answers.P ? 'active' : ''}>J (판단)</span>
-                  <div className="trait-bar">
-                    <div className="trait-fill" style={{ width: `${(answers.J / (answers.J + answers.P || 1)) * 100}%`, background: answers.J >= answers.P ? '#ec4899' : '#cbd5e1' }}></div>
-                  </div>
-                  <span className={answers.P > answers.J ? 'active' : ''}>P (인식)</span>
-                </div>
+                <span className={`trait-label ${answers.N > answers.S ? 'active' : ''}`}>N</span>
               </div>
-
-              <div className="action-buttons">
-                <button className="primary-btn share-btn" onClick={handleShare}>
-                  <Share2 size={20} /> 결과 공유하기
-                </button>
-                <button className="secondary-btn" onClick={handleStart}>
-                  <RotateCcw size={20} /> 다시 테스트하기
-                </button>
+              <div className="trait-row">
+                <span className={`trait-label ${answers.T >= answers.F ? 'active' : ''}`}>T</span>
+                <div className="trait-bar-bg">
+                  <div className="trait-bar-fill" style={{ width: `${(answers.T / (answers.T + answers.F || 1)) * 100}%` }}></div>
+                </div>
+                <span className={`trait-label ${answers.F > answers.T ? 'active' : ''}`}>F</span>
+              </div>
+              <div className="trait-row">
+                <span className={`trait-label ${answers.J >= answers.P ? 'active' : ''}`}>J</span>
+                <div className="trait-bar-bg">
+                  <div className="trait-bar-fill" style={{ width: `${(answers.J / (answers.J + answers.P || 1)) * 100}%` }}></div>
+                </div>
+                <span className={`trait-label ${answers.P > answers.J ? 'active' : ''}`}>P</span>
               </div>
             </div>
           </div>
-        )}
-      </div>
+
+          <div className="action-group">
+            <button className="btn-secondary" onClick={handleShare}>
+              <Share size={16} strokeWidth={1.5} />
+              <span>공유하기</span>
+            </button>
+            <button className="btn-outline" onClick={handleStart}>
+              <RotateCcw size={16} strokeWidth={1.5} />
+              <span>다시하기</span>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
