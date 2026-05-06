@@ -373,9 +373,35 @@ button {
   line-height: 1.7;
   font-weight: 300;
   color: var(--text-main);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   text-align: center;
   word-break: keep-all;
+}
+
+.desc-main {
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.desc-details {
+  list-style: none;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.desc-details li {
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.desc-details li::before {
+  content: "•";
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
 }
 
 .traits-container {

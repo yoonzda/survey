@@ -41,6 +41,12 @@ function App() {
     }
   };
 
+  const handleGoHome = () => {
+    setStep('intro');
+    setCurrentQIndex(0);
+    setAnswers([]);
+  };
+
   const getScores = () => {
     const scores: Record<string, number> = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
     answers.forEach(ans => {
@@ -171,7 +177,14 @@ function App() {
             
             <div className="result-body">
               <div className="result-desc">
-                <p>{results[getResultType()].description}</p>
+                <p className="desc-main">{results[getResultType()].description}</p>
+                {results[getResultType()].details && (
+                  <ul className="desc-details">
+                    {results[getResultType()].details?.map((detail, idx) => (
+                      <li key={idx}>{detail}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
               
               <div className="traits-container">
@@ -218,7 +231,7 @@ function App() {
                 <span>링크 공유</span>
               </button>
             </div>
-            <button className="btn-outline" onClick={handleStart}>
+            <button className="btn-outline" onClick={handleGoHome}>
               <RotateCcw size={16} strokeWidth={1.5} />
               <span>처음으로</span>
             </button>
