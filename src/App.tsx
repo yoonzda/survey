@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { questions, results, traitExplanations } from './data';
-import { ArrowRight, ArrowLeft, Share, Download, RotateCcw } from 'lucide-react';
+import { ChevronRight, ArrowLeft, Share, Download, RotateCcw } from 'lucide-react';
 import html2canvas from 'html2canvas';
 
 type Step = 'intro' | 'survey' | 'loading' | 'result';
@@ -144,7 +144,7 @@ function App() {
           </div>
           <button className="btn-primary" onClick={handleStart}>
             <span>검사 시작하기</span>
-            <ArrowRight size={18} strokeWidth={1.5} className="bounce-arrow" />
+            <ChevronRight size={22} strokeWidth={1.5} className="bounce-arrow" />
           </button>
         </div>
       )}

@@ -557,14 +557,23 @@ button {
 }
 
 @keyframes bounce-x {
-  0%, 100% {
+  0%, 50% {
     transform: translateX(0);
   }
-  50% {
+  60% {
+    transform: translateX(-4px);
+  }
+  75% {
     transform: translateX(6px);
+  }
+  85% {
+    transform: translateX(-1px);
+  }
+  95%, 100% {
+    transform: translateX(0);
   }
 }
 
 .bounce-arrow {
-  animation: bounce-x 1s infinite ease-in-out;
+  animation: bounce-x 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
 }
