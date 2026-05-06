@@ -64,7 +64,7 @@ function App() {
   return (
     <div className="app-container">
       {step === 'intro' && (
-        <div className="screen intro-screen animate-fade-in">
+        <div className="screen intro-screen animate-push-left">
           <div className="intro-content">
             <img src={`${import.meta.env.BASE_URL}favicon.png`} alt="Survey Logo" className="intro-logo" />
             <h3 className="subtitle">PERSONALITY TEST</h3>
@@ -83,7 +83,7 @@ function App() {
       )}
 
       {step === 'survey' && (
-        <div className="screen survey-screen animate-fade-in">
+        <div className="screen survey-screen animate-push-left">
           <div className="survey-header">
             <div className="progress-text">
               {String(currentQIndex + 1).padStart(2, '0')} / {questions.length}
@@ -113,14 +113,14 @@ function App() {
       )}
 
       {step === 'loading' && (
-        <div className="screen loading-screen animate-fade-in">
+        <div className="screen loading-screen animate-push-left">
           <div className="loader"></div>
           <p className="loading-text">답변을 바탕으로<br/>심층 분석을 진행 중입니다</p>
         </div>
       )}
 
       {step === 'result' && (
-        <div className="screen result-screen animate-fade-in">
+        <div className="screen result-screen animate-push-left">
           <div className="result-header">
             <span className="result-label">ANALYSIS COMPLETE</span>
             <h1 className="result-type">{getResultType()}</h1>

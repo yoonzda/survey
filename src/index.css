@@ -36,6 +36,7 @@ body, html {
   /* Optional: faint side borders on desktop to frame the app */
   border-left: 1px solid var(--border);
   border-right: 1px solid var(--border);
+  overflow-x: hidden;
 }
 
 @media (max-width: 480px) {
@@ -63,13 +64,13 @@ body, html {
 }
 
 /* Animations */
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
+.animate-push-left {
+  animation: pushLeft 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes pushLeft {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 /* Typography & General */
