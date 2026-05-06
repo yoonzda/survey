@@ -103,6 +103,30 @@ function App() {
 
   const scores = step === 'result' ? getScores() : { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
 
+  const renderTraitBar = (leftLabel: string, rightLabel: string, leftScore: number, rightScore: number) => {
+    const total = leftScore + rightScore || 1;
+    const leftPct = Math.round((leftScore / total) * 100);
+    const rightPct = 100 - leftPct;
+    const isLeftDominant = leftScore >= rightScore;
+
+    return (
+      <div className="trait-row">
+        <span className={`trait-label ${isLeftDominant ? 'active' : ''}`}>{leftLabel}</span>
+        <div className="trait-bar-bg">
+          <div 
+            className="trait-bar-fill" 
+            style={{ 
+              width: `${isLeftDominant ? leftPct : rightPct}%`,
+              left: isLeftDominant ? '0' : 'auto',
+              right: isLeftDominant ? 'auto' : '0'
+            }}
+          ></div>
+        </div>
+        <span className={`trait-label ${!isLeftDominant ? 'active' : ''}`}>{rightLabel}</span>
+      </div>
+    );
+  };
+
   return (
     <div className="app-container">
       {step === 'intro' && (
@@ -167,7 +191,6 @@ function App() {
 
       {step === 'result' && (
         <div className="screen result-screen animate-push-left">
-          {/* This wrapper is what we capture as an image */}
           <div ref={resultRef} className="result-capture-area">
             <div className="result-header">
               <span className="result-label">ANALYSIS COMPLETE</span>
@@ -176,46 +199,24 @@ function App() {
             </div>
             
             <div className="result-body">
+              {/* 그래프 (Traits Summary) 를 타이틀 바로 아래로 이동 */}
+              <div className="traits-container">
+                {renderTraitBar('E', 'I', scores.E, scores.I)}
+                {renderTraitBar('S', 'N', scores.S, scores.N)}
+                {renderTraitBar('T', 'F', scores.T, scores.F)}
+                {renderTraitBar('J', 'P', scores.J, scores.P)}
+              </div>
+
+              {/* 그 아래에 상세 설명 */}
               <div className="result-desc">
                 <p className="desc-main">{results[getResultType()].description}</p>
                 {results[getResultType()].details && (
                   <ul className="desc-details">
-                    {results[getResultType()].details?.map((detail, idx) => (
+                    {results[getResultType()].details.map((detail, idx) => (
                       <li key={idx}>{detail}</li>
                     ))}
                   </ul>
                 )}
-              </div>
-              
-              <div className="traits-container">
-                <div className="trait-row">
-                  <span className={`trait-label ${scores.E >= scores.I ? 'active' : ''}`}>E</span>
-                  <div className="trait-bar-bg">
-                    <div className="trait-bar-fill" style={{ width: `${(scores.E / (scores.E + scores.I || 1)) * 100}%` }}></div>
-                  </div>
-                  <span className={`trait-label ${scores.I > scores.E ? 'active' : ''}`}>I</span>
-                </div>
-                <div className="trait-row">
-                  <span className={`trait-label ${scores.S >= scores.N ? 'active' : ''}`}>S</span>
-                  <div className="trait-bar-bg">
-                    <div className="trait-bar-fill" style={{ width: `${(scores.S / (scores.S + scores.N || 1)) * 100}%` }}></div>
-                  </div>
-                  <span className={`trait-label ${scores.N > scores.S ? 'active' : ''}`}>N</span>
-                </div>
-                <div className="trait-row">
-                  <span className={`trait-label ${scores.T >= scores.F ? 'active' : ''}`}>T</span>
-                  <div className="trait-bar-bg">
-                    <div className="trait-bar-fill" style={{ width: `${(scores.T / (scores.T + scores.F || 1)) * 100}%` }}></div>
-                  </div>
-                  <span className={`trait-label ${scores.F > scores.T ? 'active' : ''}`}>F</span>
-                </div>
-                <div className="trait-row">
-                  <span className={`trait-label ${scores.J >= scores.P ? 'active' : ''}`}>J</span>
-                  <div className="trait-bar-bg">
-                    <div className="trait-bar-fill" style={{ width: `${(scores.J / (scores.J + scores.P || 1)) * 100}%` }}></div>
-                  </div>
-                  <span className={`trait-label ${scores.P > scores.J ? 'active' : ''}`}>P</span>
-                </div>
               </div>
             </div>
           </div>
