@@ -240,14 +240,31 @@ function App() {
 
                 {/* 환상의 궁합 / 파국의 궁합 */}
                 <div className="match-container">
-                  <div className="match-card good-match">
-                    <div className="match-badge">최고의 궁합 🤝</div>
-                    <div className="match-type">{currentResult.goodMatch.type} - {currentResult.goodMatch.title}</div>
+                  <div className="match-card">
+                    <div className="match-header">
+                      <div className="match-circle">
+                        {currentResult.goodMatch.type}
+                      </div>
+                      <div className="match-info">
+                        <div className="match-badge">최고의 궁합</div>
+                        <div className="match-title">{currentResult.goodMatch.title}</div>
+                        <div className="match-score">궁합률 {currentResult.goodMatch.score}%</div>
+                      </div>
+                    </div>
                     <p className="match-desc">{currentResult.goodMatch.desc}</p>
                   </div>
-                  <div className="match-card bad-match">
-                    <div className="match-badge">상극인 궁합 🌪️</div>
-                    <div className="match-type">{currentResult.badMatch.type} - {currentResult.badMatch.title}</div>
+                  
+                  <div className="match-card">
+                    <div className="match-header">
+                      <div className="match-circle bad">
+                        {currentResult.badMatch.type}
+                      </div>
+                      <div className="match-info">
+                        <div className="match-badge">상극인 궁합</div>
+                        <div className="match-title">{currentResult.badMatch.title}</div>
+                        <div className="match-score">궁합률 {currentResult.badMatch.score}%</div>
+                      </div>
+                    </div>
                     <p className="match-desc">{currentResult.badMatch.desc}</p>
                   </div>
                 </div>
