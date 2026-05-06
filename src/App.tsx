@@ -151,11 +151,6 @@ function App() {
 
       {step === 'survey' && (
         <div className="screen survey-screen animate-push-left">
-          {questions[currentQIndex].icon && (
-            <div className="bg-watermark">
-              <img src={`${import.meta.env.BASE_URL}images/${questions[currentQIndex].icon}.png`} alt="watermark" />
-            </div>
-          )}
           <div className="survey-header">
             <button className="btn-back" onClick={handleBack}>
               <ChevronLeft size={22} strokeWidth={1.5} />
@@ -172,6 +167,11 @@ function App() {
           </div>
           
           <div className="question-content">
+            {questions[currentQIndex].icon && (
+              <div className="question-image-container">
+                <img src={`${import.meta.env.BASE_URL}images/${questions[currentQIndex].icon}.png`} alt="illustration" className="question-image" />
+              </div>
+            )}
             <h2 className="question-text">{questions[currentQIndex].text}</h2>
           </div>
           <div className="options">
