@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { questions, results } from './data';
+import { questions, results, traitExplanations } from './data';
 import { ArrowRight, ArrowLeft, Share, Download, RotateCcw } from 'lucide-react';
 import html2canvas from 'html2canvas';
 
@@ -105,24 +105,23 @@ function App() {
 
   const renderTraitBar = (leftLabel: string, rightLabel: string, leftScore: number, rightScore: number) => {
     const total = leftScore + rightScore || 1;
-    const leftPct = Math.round((leftScore / total) * 100);
-    const rightPct = 100 - leftPct;
-    const isLeftDominant = leftScore >= rightScore;
+    const isLeft = leftScore >= rightScore;
+    const pct = isLeft ? (leftScore / total) * 50 : (rightScore / total) * 50;
 
     return (
       <div className="trait-row">
-        <span className={`trait-label ${isLeftDominant ? 'active' : ''}`}>{leftLabel}</span>
-        <div className="trait-bar-bg">
+        <span className={`trait-label ${isLeft ? 'active' : ''}`}>{leftLabel}</span>
+        <div className="trait-bar-bg center-aligned">
+          <div className="trait-center-mark"></div>
           <div 
             className="trait-bar-fill" 
             style={{ 
-              width: `${isLeftDominant ? leftPct : rightPct}%`,
-              left: isLeftDominant ? '0' : 'auto',
-              right: isLeftDominant ? 'auto' : '0'
+              width: `${pct}%`,
+              [isLeft ? 'right' : 'left']: '50%',
             }}
           ></div>
         </div>
-        <span className={`trait-label ${!isLeftDominant ? 'active' : ''}`}>{rightLabel}</span>
+        <span className={`trait-label ${!isLeft ? 'active' : ''}`}>{rightLabel}</span>
       </div>
     );
   };
@@ -199,7 +198,7 @@ function App() {
             </div>
             
             <div className="result-body">
-              {/* 그래프 (Traits Summary) 를 타이틀 바로 아래로 이동 */}
+              {/* 그래프 (Traits Summary) */}
               <div className="traits-container">
                 {renderTraitBar('E', 'I', scores.E, scores.I)}
                 {renderTraitBar('S', 'N', scores.S, scores.N)}
@@ -207,16 +206,23 @@ function App() {
                 {renderTraitBar('J', 'P', scores.J, scores.P)}
               </div>
 
-              {/* 그 아래에 상세 설명 */}
+              {/* 상세 설명 (각 글자별 강조) */}
               <div className="result-desc">
                 <p className="desc-main">{results[getResultType()].description}</p>
-                {results[getResultType()].details && (
-                  <ul className="desc-details">
-                    {results[getResultType()].details.map((detail, idx) => (
-                      <li key={idx}>{detail}</li>
-                    ))}
-                  </ul>
-                )}
+                <div className="trait-breakdown">
+                  {getResultType().split('').map(char => {
+                    const trait = traitExplanations[char];
+                    return (
+                      <div key={char} className="trait-breakdown-item">
+                        <span className="trait-breakdown-char">{char}</span>
+                        <div className="trait-breakdown-text">
+                          <h4 className="trait-breakdown-title">{trait.title}</h4>
+                          <p>{trait.desc}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>

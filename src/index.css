@@ -429,20 +429,77 @@ button {
   font-weight: 600;
 }
 
-.trait-bar-bg {
+.trait-bar-bg.center-aligned {
   flex: 1;
-  height: 2px;
+  height: 4px;
   background-color: var(--border);
   position: relative;
+  border-radius: 2px;
+}
+
+.trait-center-mark {
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background-color: var(--text-muted);
+  transform: translateX(-50%);
+  z-index: 1;
 }
 
 .trait-bar-fill {
   position: absolute;
   top: 0;
-  left: 0;
-  height: 2px;
+  height: 4px;
   background-color: var(--accent);
   transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: 2px;
+}
+
+/* Trait Breakdown Section */
+.trait-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.trait-breakdown-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem;
+  background-color: #f4f4f5;
+  border-radius: 12px;
+}
+
+.trait-breakdown-char {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  width: 32px;
+  text-align: center;
+}
+
+.trait-breakdown-text {
+  flex: 1;
+}
+
+.trait-breakdown-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.3rem;
+}
+
+.trait-breakdown-text p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  word-break: keep-all;
 }
 
 .action-group {
