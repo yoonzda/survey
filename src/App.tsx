@@ -167,23 +167,26 @@ function App() {
           </div>
           
           <div className="question-content">
-            {questions[currentQIndex].icon && (
-              <div className="question-image-container">
-                <img src={`${import.meta.env.BASE_URL}images/${questions[currentQIndex].icon}.png`} alt="illustration" className="question-image" />
-              </div>
-            )}
             <h2 className="question-text">{questions[currentQIndex].text}</h2>
           </div>
-          <div className="options">
-            {questions[currentQIndex].options.map((opt, idx) => (
-              <button 
-                key={idx} 
-                className="btn-option" 
-                onClick={() => handleAnswer(opt.value)}
-              >
-                {opt.text}
-              </button>
-            ))}
+          <div className="options-grid">
+            {questions[currentQIndex].options.map((opt, idx) => {
+              const letter = idx === 0 ? 'a' : 'b';
+              const imgName = `q${questions[currentQIndex].id}_${letter}`;
+              return (
+                <button 
+                  key={idx} 
+                  className="option-card fade-in" 
+                  style={{ animationDelay: `${idx * 0.1}s` }}
+                  onClick={() => handleAnswer(opt.value)}
+                >
+                  <div className="option-image-container">
+                    <img src={`${import.meta.env.BASE_URL}images/${imgName}.png`} alt={opt.text} className="option-image" />
+                  </div>
+                  <span className="option-text">{opt.text}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
       )}
